@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  font-family: Gilroy;
+}
+
+#first-frame {
+  background-image: url("../images/boi.png");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  width: 100vw;
+  height: 1080px;
+}
+
+.flexbox-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3em;
+}
+
+.nav-inner {
+  width: 60vw;
+}
+
+.user-cred {
+  width: 10vw;
+}
+
+.nav-item a {
+  padding: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.search-container-wrapper {
+  width: 600px;
+  margin: auto;
+  height: 50px;
+  /* border: 2px solid black; */
+  height: 80vh;
+  display: flex;
+}
+
+.search-container {
+  /* border: 2px solid black; */
+  width: 80%;
+  height: 65px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input-wrapper {
+  display: flex;
+  border: 0.5px solid #5865f2;
+  padding: 18px;
+  border-radius: 50px;
+  background-color: white;
+  margin: 5px;
+}
+
+.search-input-wrapper input {
+  border: 0px white;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 1.5em;
+}
+.search-input-wrapper input:nth-child(1) {
+  width: 300px;
+}
+.search-input-wrapper input:nth-child(2) {
+  width: 600px;
+}
+
+.search-input-wrapper input:focus {
+  border: 0px white;
+}
+
+.search-page-icon {
+  font-size: 2em;
+}
+
+.main-heading {
+  text-decoration: underline;
+  text-decoration-color: #ffc247;
+  text-underline-offset: 25px;
+  font-size: 4em;
+  font-weight: 2000;
+  margin-top: 80px;
+  margin-bottom: 70px;
+}
+
+/* TOP COLLEGES */
+/* #top-colleges{
+  
+} */
+
+.border {
+  border: 1px solid black;
+}
+
+.colleges-container {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: auto;
+}
+
+.college-item {
+  text-align: left;
+  width: 25%;
+  height: 500px;
+  /* border: 2px solid black; */
+  margin: 5px;
+}
+
+.college-item img {
+  width: 100%;
+  border-radius: 5%;
+}
+
+.college-item div div {
+  font-weight: 1000;
+  font-size: 30px;
+}
+
+/* OUR SERVICES */
+#our-services {
+  background-color: #f6fae8;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: auto;
+  padding: 30px;
+}
+
+.services-item {
+  display: flex;
+  width: 45%;
+  height: 300px;
+  /* border: 2px solid black; */
+  border-radius: 25px;
+  margin: 20px;
+  box-shadow: 1px 1px;
+  background-color: white;
+}
+
+.services-item:hover {
+  background-color: #ffb010;
+  color: white;
+}
+
+.services-item div {
+  text-align: left;
+  padding: 25px;
+}
+
+.services-item div div {
+  font-size: 3em;
+  font-weight: 1000;
+  font-size: 30px;
+}
+
+.services-item div p {
+  font-size: 1.6em;
+}
+
+.services-icon {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: 20px;
+}
+
+/* ALUMNI */
+
+#alumni {
+  margin: 100px 0px;
+}
+
+.alumni-container {
+  display: flex;
+  justify-content: center;
+  height: 765px;
+}
+
+.alumin-tagline {
+  width: 600px;
+}
+
+.alumnis {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+}
+
+.alumni-item {
+  width: 350px;
+  height: 600px;
+  /* border: 2px solid black; */
+  margin: 40px 20px;
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+}
+
+.alumni-item:nth-child(odd) {
+  align-self: flex-end;
+  background-color: #ebebeb;
+}
+
+.alumni-item:nth-child(even) {
+  align-self: flex-start;
+  background-color: #5865f2;
+}
+
+.alumni-item .name {
+  font-size: 2em;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.three-circle .circle {
+  /* border:1px solid black; */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.circle {
+  /* border:1px solid black; */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: auto;
+  background-color: #d9d9d9;
+}
+
+.bottom {
+  position: absolute;
+  bottom: -100px;
+  left: 25%;
+}
+
+/* ABOUTUS-CONTAINER */
+
+.aboutus-container {
+  display: flex;
+  justify-content: center;
+  height: 765px;
+}
+
+.girl-image {
+  width: 500px;
+  height: 500px;
+  background: url("../images/young_woman.png");
+  border: 1px solid black;
+}
+
+.aboutus-content {
+  width: 1000px;
+  border: 1px solid black;
+}
+
+.item-wrapper {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.aboutus-item {
+  width: 300px;
+  height: 300px;
+  /* border-radius: 50%; */
+  border: 1px solid black;
+  margin: 40px;
+}

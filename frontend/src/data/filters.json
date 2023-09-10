@@ -1,0 +1,43 @@
+{
+    "data":{
+        "category":[
+            "men's clothing",
+            "women's clothing",
+            "electronics",
+            "jewelery"
+        ],    
+    "mobile":[
+        "category",
+        "brands",
+        "Price and Deals",
+        "Customers Reviews",
+        "internal Memory",
+        "Item Weight",
+        "Processor Speed",
+        "Battery Capacity",
+        "Colour"
+    ],
+    "clothing":[
+        "category",
+        "brands",
+        "Price and Deals",
+        "Customers Reviews",
+        "internal Memory",
+        "Item Weight",
+        "Processor Speed",
+        "Battery Capacity",
+        "Colour"
+    ],
+    "Groceries":[
+        "category",
+        "brands",
+        "Price and Deals",
+        "Customers Reviews",
+        "internal Memory",
+        "Item Weight",
+        "Processor Speed",
+        "Battery Capacity",
+        "Colour"
+    ]
+}
+}
