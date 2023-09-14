@@ -1,3 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-start{
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-spaceAround {
+  justify-content: space-around;
+}
+
+.justify-spaceEvenly {
+  justify-content: space-evenly;
+}
+
+.justify-spaceBetween {
+  justify-content: space-between;
+}
+
+.center-div{
+  margin: auto;
+}
+
 .App {
   text-align: center;
 }

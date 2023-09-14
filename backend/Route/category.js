@@ -1,13 +1,12 @@
 const express = require("express");
-const products = require("../Controller/products");
+const category = require("../Controller/category");
 const { isAuthenticated } = require("../Controller/JWTAuthMiddleware");
 
 const router = express.Router();
 
-const { getAllProducts, getProduct, add, remove, update } = products;
+const { getAllCategories, add, remove, update } = category;
 
-router.post("/getAllProducts", getAllProducts);
-router.get("/Product", getProduct);
+router.get("/categories", getAllCategories);
 router.post("/add", isAuthenticated, add);
 router.post("/delete", isAuthenticated, remove);
 router.post("/update", isAuthenticated, update);

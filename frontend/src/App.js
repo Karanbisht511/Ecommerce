@@ -1,6 +1,6 @@
 import "./App.css";
 import Skeleton from "./components/Skeleton";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import Signup from "./components/AuthPages/Signup";
 import Login from "./components/AuthPages/Login";
 import Products from "./components/Products/Products";
@@ -10,6 +10,7 @@ import SingleProduct from "./components/Products/SingleProduct";
 import Profile from "./pages/Profile";
 import Orders from "./pages/Orders";
 import Admin from "./pages/Admin";
+import BuyProduct from "./pages/BuyProduct";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -33,6 +34,7 @@ function App() {
                     <Route path="products" element={<Products />}>
                       <Route path="productList" element={<ProductList />} />
                       <Route path=":productId" element={<SingleProduct />} />
+                      <Route path="buyProduct" element={<BuyProduct />} />
                     </Route>
                     <Route path="cart" element={<Cart />}></Route>
                     <Route path="Profile" element={<Profile />} />

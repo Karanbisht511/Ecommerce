@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../Utils/JWTFunctions");
-const User = require("../Model/userSchema");
+const User = require("../Model/user");
 const { areValidCredentials } = require("../Utils/validateCredentials");
 
 exports.login = async (req, res) => {

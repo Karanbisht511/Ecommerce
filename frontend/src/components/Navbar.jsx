@@ -5,7 +5,7 @@ import { useContext } from "react";
 function Navbar() {
 
     const { auth, logOut } = useContext(AuthContext)
-    const { isLoggedIn } = auth
+    const { isLoggedIn,userData } = auth
     const navigate = useNavigate()
     const handleDdSelect = (e) => {
         const optionSelected = e.target.value
@@ -42,7 +42,7 @@ function Navbar() {
                     <div id="profile">
                         <label htmlFor="profile-dropdown"></label>
                         <select id="[profile-dropdown" onChange={handleDdSelect}>
-                            <option value="UserName">Username</option>
+                            <option value="UserName">{userData?.username}</option>
                             <option value="View Profile">View Profile</option>
                             <option value="Cart">Cart</option>
                             <option value="Orders">Orders</option>

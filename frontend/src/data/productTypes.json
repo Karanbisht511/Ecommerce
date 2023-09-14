@@ -1,0 +1,14 @@
+{
+  "productTypes": [
+    { "image": "", "text": "Grocery" },
+    { "image": "", "text": "Mobile" },
+    { "image": "", "text": "Fashion" },
+    { "image": "", "text": "Electronics" },
+    { "image": "", "text": "Home & Furnitures" },
+    { "image": "", "text": "Grocery" },
+    { "image": "", "text": "Mobile" },
+    { "image": "", "text": "Fashion" },
+    { "image": "", "text": "Electronics" },
+    { "image": "", "text": "Home & Furnitures" }
+  ]
+}

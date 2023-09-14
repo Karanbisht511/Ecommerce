@@ -11,8 +11,6 @@ const ShowProducts = function ShowProducts({ products }) {
     if (category !== 'ALL')
         products = products.filter(item => item.category === category)
 
-     
-
     return <>
         {
             products && products.map(function (item, index) {

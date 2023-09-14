@@ -1,0 +1,48 @@
+.width-eighty{
+    width: 80%;
+}
+
+.margin-top-ten{
+    margin:  10px auto;
+}
+
+.product-height-300{
+    height: 300px;
+}
+
+.overFlow-x{
+    overflow-x: scroll;
+}
+
+.overFlow-x::-webkit-scrollbar{
+    display: none;
+}
+
+.item-width{
+    min-width: 150px
+}
+
+.product-list{
+    align-items: center;
+}
+
+.products-list-horizontally{
+    width: 80%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.carousel-control-prev{
+    background-color:black;
+}
+
+.carousel-control-next{
+    background-color:black;
+}
+
+/* .carousel{
+    height: 300px;
+} */

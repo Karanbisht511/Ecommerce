@@ -1,5 +1,6 @@
 import CartContext from "../Context/CartContext";
 import { useContext, useState } from "react";
+import Button from 'react-bootstrap/Button'
 
 // This button have the power to add items to cart
 // It will add items which are passed as a prop to it to the cartState
@@ -10,7 +11,7 @@ function AddToCart({ item }) {
 
     const handleAddCart = () => {
         console.log(item.count)
-        addCart(item,counter)
+        addCart(item, counter)
         setCounter(0)
     }
 
@@ -38,9 +39,9 @@ function AddToCart({ item }) {
             <button id="count-increase" className="counter-btn" onClick={increaseCounter}>+</button>
         </div>
 
-        <button onClick={() => {
+        <Button style={{ backgroundColor: "#ff9f00", borderRadius: '0', border: '0' }} onClick={() => {
             handleAddCart(item)
-        }}>Add to Cart</button>
+        }} variant="primary" size="lg" >Add to Cart</Button>
 
     </>
 }
