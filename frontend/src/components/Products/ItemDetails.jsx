@@ -6,12 +6,12 @@ export default function ItemDetails({ item, index }) {
 
     const navigate=useNavigate()
    
-    const { id,category, title, image, description, price, count } = item
+    const { _id,category, title, images, description, price, count } = item
 
     const openProduct=()=>{
         console.log("nested product");
 
-        navigate(`/products/${id}`)
+        navigate(`/products/${_id}`)
     }
 
     return (
@@ -19,7 +19,7 @@ export default function ItemDetails({ item, index }) {
             <div onClick={openProduct}>
             {category && <div>Category: {category}</div>}
             {title && <div><h2>Title</h2> {title}</div>}
-            {image && <div><img src={image} alt="" /></div>}
+            {images && <div><img src={images[0]} alt="" /></div>}
             {description && <div><h2>Description:</h2> {description}</div>}
             </div>
             {price && <div><h2> Price:</h2>{price}</div>}

@@ -14,24 +14,24 @@ export default function SingleProduct() {
     const { productId } = param
     console.log(productId);
 
-    const selectedProduct = productList.find(({ id }) => parseInt(productId) == id)
+    const selectedProduct = productList.find(({ _id }) => productId === _id)
     console.log(selectedProduct);
-    const { id, category, title, image, description, price, count, rating,offer } = selectedProduct
+    const { _id, category, name, images, description, price, count, review, offer } = selectedProduct
 
     return <div className="product-template-box flex">
         <div className="image-section">
             <div className="product-image">
-                {image && <img src={image} alt="" />}
+                {images && <img src={images[0]} alt="" />}
             </div>
             <div className="btn-wrapper">
                 <AddToCart item={selectedProduct} />
-                <BtnBuyNow productId={id} />
+                <BtnBuyNow productId={_id} />
             </div>
         </div>
         <div className="product-details">
-            {title && <div>{title}</div>}
-            {rating?.rate && <RatingBadge rating={rating?.rate} />}
-            Rating {rating?.count && <span>{rating?.count}</span>}
+            {name && <div><h2>{name}</h2></div>}
+            {review?.rating && <RatingBadge rating={review?.rating} />}
+            Rating {review?.reviewerCount && <span>{review?.reviewerCount}</span>}
             {price && <h2>&#8377; {price}</h2> && offer && <span>offer</span>}
             {description && <div><span>Description:</span> <span>{description}</span></div>}
         </div>

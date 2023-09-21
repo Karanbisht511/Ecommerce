@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Skeleton from "./components/Skeleton";
 import Home from "./pages/Home";
@@ -11,14 +12,11 @@ import Profile from "./pages/Profile";
 import Orders from "./pages/Orders";
 import Admin from "./pages/Admin";
 import BuyProduct from "./pages/BuyProduct";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import AuthState from "./components/Context/AuthState";
 import CategoryState from "./components/Context/CategoryState";
 import CartState from "./components/Context/CartState";
 import ProductState from "./components/Context/ProductState";
-import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -36,7 +34,7 @@ function App() {
                       <Route path=":productId" element={<SingleProduct />} />
                       <Route path="buyProduct" element={<BuyProduct />} />
                     </Route>
-                    <Route path="cart" element={<Cart />}></Route>
+                    <Route path="cart" element={<Cart />} />
                     <Route path="Profile" element={<Profile />} />
                     <Route path="Orders" element={<Orders />} />
                   </Route>

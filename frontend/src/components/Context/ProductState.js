@@ -1,21 +1,63 @@
 import { useEffect, useState } from "react";
 import ProductContext from "./ProductsContext";
+import axios from "axios";
 
 export default function ProductState(props) {
-//   const state = {
-//     productList: [],
-//   }
+  const [productList, setProductList] = useState([]);
+  const [arrCatProducts, setArrCatProducts] = useState([]);
+  const [pId, setPId] = useState(null);
 
-  const [productList,setProductList]=useState()
+  const payload = {
+    filter: {
+      category: "All",
+      rating: "All",
+    },
+  };
 
-  const getProducts = () => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json)
-        setProductList(json)
-      })
-  }
+  useEffect(() => {
+    getCategorizeProduct();
+    getProducts(payload);
+  }, []);
 
-  return <ProductContext.Provider value={{productList,getProducts}}>{props.children}</ProductContext.Provider>;
+  useEffect(() => {
+    console.log(arrCatProducts);
+  }, [arrCatProducts]);
+
+  const getProducts = async (payload) => {
+    console.log(payload);
+    const response = await axios.post(
+      "http://localhost:8080/api/products/getAllProducts",
+      payload
+    );
+    const { products } = response?.data;
+    setProductList([...products]);
+  };
+
+  const getCategorizeProduct = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/products/categorizedProducts"
+    );
+
+    const { catProductsList } = response?.data;
+    setArrCatProducts(catProductsList);
+  };
+
+  const updatePid = (id) => {
+    setPId(id);
+  };
+
+  return (
+    <ProductContext.Provider
+      value={{
+        productList,
+        getCategorizeProduct,
+        arrCatProducts,
+        getProducts,
+        pId,
+        updatePid,
+      }}
+    >
+      {props.children}
+    </ProductContext.Provider>
+  );
 }

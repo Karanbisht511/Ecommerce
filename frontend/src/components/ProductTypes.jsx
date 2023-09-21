@@ -1,23 +1,14 @@
 import "./productTypes.css"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import {useContext } from "react"
+import CategoryContext from "./Context/CategoryContext";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 function ProductTypes() {
 
-    const [categories, setCategories] = useState([])
-
-    useEffect(() => {
-        (async () => {
-            const response = await axios.get("http://localhost:8080/api/category/categories")
-            console.log(response.data);
-            setCategories(response.data)
-        })()
-    }, [])
-
+    const {categories} =useContext(CategoryContext)
     return <div className="width-eighty flex justify-spaceAround center-div margin-ten">
-        {categories.map((category, index) => {
+        {categories && categories.map((category, index) => {
             console.log(category);
             const { name, description } = category
             return <div key={index}>
