@@ -7,6 +7,10 @@ export default function ProductState(props) {
   const [arrCatProducts, setArrCatProducts] = useState([]);
   const [pId, setPId] = useState(null);
 
+  const [filters, setFilters] = useState({
+    priceFltr: { price: null, prcFltrType: null },
+  });
+
   const payload = {
     filter: {
       category: "All",
@@ -46,6 +50,31 @@ export default function ProductState(props) {
     setPId(id);
   };
 
+  const updateFilters = ({ priceFilter }) => {
+    // const { priceFilter } = filters;
+    setFilters((prev) => ({
+      ...prev,
+      priceFltr: {
+        price: priceFilter?.price,
+        prcFltrType: priceFilter?.prcFltrType,
+      },
+    }));
+  };
+
+  const applyFilters = (products) => {
+    const { priceFltr } = filters;
+    return products.filter((product) => {
+      const { price } = product;
+      if (priceFltr?.prcFltrType === "max") {
+        return price < priceFltr?.price;
+      } else if (priceFltr?.prcFltrType === "min") {
+        return price > priceFltr?.price;
+      } else {
+        return true;
+      }
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -55,6 +84,9 @@ export default function ProductState(props) {
         getProducts,
         pId,
         updatePid,
+        filters,
+        updateFilters,
+        applyFilters,
       }}
     >
       {props.children}
