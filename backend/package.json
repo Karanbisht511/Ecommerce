@@ -4,8 +4,10 @@
   "description": "Backend for ecom",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/index.js",
+    "tsDev": "ts-node src/index.ts",
     "dev": "nodemon index.js",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,9 +18,21 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "@eslint/config-array": "^0.18.0",
+    "@eslint/object-schema": "^2.1.4",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
   }
 }

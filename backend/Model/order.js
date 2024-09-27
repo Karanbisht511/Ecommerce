@@ -1,21 +1,14 @@
-const mongoose = require('mongoose');
-const Product = require('./product')
+const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
+  username: {
+    type: String,
     required: true,
   },
   status: {
     type: String,
-    enum: ['pending', 'processing', 'shipped', 'delivered'],
-    default: 'pending',
-  },
-  totalAmount: {
-    type: Number,
-    required: true,
-    min: 0,
+    enum: ["pending", "processing", "shipped", "delivered"],
+    default: "pending",
   },
   orderDate: {
     type: Date,
@@ -28,23 +21,26 @@ const orderSchema = new mongoose.Schema({
     postalCode: String,
     country: String,
   },
+  totalAmount: {
+    type: Number,
+    required: true,
+  },
   items: [
     {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product', // Reference to the Product model
+      productId: {
+        type: String,
         required: true,
       },
+      // product: {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: "Product", // Reference to the Product model
+      //   required: true,
+      // },
       quantity: {
         type: Number,
         required: true,
         min: 1,
-      },
-      unitPrice: {
-        type: Number,
-        required: true,
-        min: 0,
-      },
+      }
     },
   ],
   created_at: {
@@ -57,6 +53,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 module.exports = Order;

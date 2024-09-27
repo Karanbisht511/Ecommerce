@@ -9,6 +9,7 @@ export default function ProductState(props) {
 
   const [filters, setFilters] = useState({
     priceFltr: { price: null, prcFltrType: null },
+    rating: null,
   });
 
   const payload = {
@@ -34,6 +35,7 @@ export default function ProductState(props) {
       payload
     );
     const { products } = response?.data;
+    console.log(products);
     setProductList([...products]);
   };
 
@@ -50,29 +52,54 @@ export default function ProductState(props) {
     setPId(id);
   };
 
-  const updateFilters = ({ priceFilter }) => {
-    // const { priceFilter } = filters;
-    setFilters((prev) => ({
-      ...prev,
+  const clearFilters = () => {
+    setFilters({
+      priceFltr: { price: null, prcFltrType: null },
+      rating: null,
+    });
+  };
+
+  const updateFilters = ({ priceFilter, rating }) => {
+    // clearFilters();
+    setFilters({
       priceFltr: {
         price: priceFilter?.price,
         prcFltrType: priceFilter?.prcFltrType,
       },
-    }));
+      rating: rating,
+    });
   };
 
   const applyFilters = (products) => {
-    const { priceFltr } = filters;
-    return products.filter((product) => {
-      const { price } = product;
-      if (priceFltr?.prcFltrType === "max") {
-        return price < priceFltr?.price;
-      } else if (priceFltr?.prcFltrType === "min") {
-        return price > priceFltr?.price;
-      } else {
-        return true;
-      }
-    });
+    const { priceFltr, rating } = filters;
+    let fltrdPdts;
+    if (rating !== null) {
+      fltrdPdts = products.filter((product) => {
+        const { review } = product;
+        return review?.rating > rating && review?.rating < rating + 1;
+      });
+      console.log(fltrdPdts);
+    } else {
+      fltrdPdts = products;
+      console.log(fltrdPdts);
+    }
+
+    if (priceFltr?.price !== null && priceFltr?.prcFltrType !== null) {
+      fltrdPdts = fltrdPdts.filter((product) => {
+        const { price,review } = product;
+        if (priceFltr?.prcFltrType === "max") {
+          return price <= priceFltr?.price;
+        } else if (priceFltr?.prcFltrType === "min") {
+          return price >= priceFltr?.price;
+        } else {
+          return (review?.rating === rating);
+        }
+      });
+      console.log(fltrdPdts);
+    }
+
+    console.log(fltrdPdts);
+    return fltrdPdts;
   };
 
   return (

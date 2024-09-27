@@ -6,13 +6,15 @@ const { areValidCredentials } = require("../Utils/validateCredentials");
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const userPayload = { username };
-    console.log(userPayload);
+   
     const result = await User.findOne({ username });
 
     if (!result) {
       res.status(400).json({ message: "Invalid User Credentials!" });
     } else if (result) {
+      console.log(result);
+      const { _id } = result;
+      const userPayload = { userId: _id };
       const { passwordHash } = result;
       bcrypt.compare(password, passwordHash, function (err, isEqual) {
         if (err) {

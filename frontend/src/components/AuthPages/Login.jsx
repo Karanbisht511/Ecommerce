@@ -118,7 +118,7 @@ function Login() {
     else
         return <>
             <div className="container">
-                <div id="left" className="components">
+                {/* <div id="left" className="components">
                     <div className="brand-txt">
                         <div className="fontDetailWelcome signup-secondary">Welcome to</div>
                         <div className="fontTitle signup-primary">startyourcareer.in</div>
@@ -126,15 +126,15 @@ function Login() {
                     <div className="image-wrapper">
                         <img className="girl" src={girlImg} alt="" />
                     </div>
-                </div>
+                </div> */}
 
                 <div id="right" className="components">
                     <div className="content">
                         <div className="fontTitle signup-secondary" >Sign Up</div>
-                        <div className="signup-thirdParty">
+                        {/* <div className="signup-thirdParty">
                             <button className="icon-wrapper"> <googleIcon></googleIcon> Sign up with Google</button>
                             <button className="icon-wrapper"> <fbIcon></fbIcon> Sign up with Facebook</button>
-                        </div>
+                        </div> */}
                         {/* <form className="signup-form" action=""> */}
 
                         <div className="input-name">

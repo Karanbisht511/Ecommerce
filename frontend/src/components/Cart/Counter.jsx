@@ -3,28 +3,17 @@ import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "../Context/CartContext";
 
-export default function Counter({ item }) {
+export default function Counter({ quantity }) {
 
     const { pathname } = useLocation()
     const cartPath = '/cart'
     const productspath = '/products'
-    const { addCart, removeFromCart } = useContext(CartContext)
-    console.log(item);
-    const { title, count } = item
-    console.log("title:", title + " count:" + count)
-    const [counter, setCounter] = useState(count)
+    
+    const [counter, setCounter] = useState(quantity)
 
-    useEffect(() => {
-        setCounter(count)
-    }, [counter])
-
-    // const increaseCounter = () => {
-    //     setCounter(counter + 1)
-    // }
-
-    // const decreaseCounter = () => {
-    //     setCounter(counter - 1)
-    // }
+    // useEffect(() => {
+    //     setCounter(quantity)
+    // }, [counter])
 
     const decreaseCart = () => {
         console.log(item);
