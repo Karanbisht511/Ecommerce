@@ -1,12 +1,34 @@
-const mongoose = require("mongoose");
+import { Schema, Document, model } from "mongoose";
 
-const orderSchema = new mongoose.Schema({
+export interface Item {
+  productId: string;
+  quantity: number;
+}
+
+export interface IOrder extends Document {
+  username: string;
+  status: Enumerator<string>;
+  orderDate: Date;
+  shippingAddress: {
+    street: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+  };
+  totalAmount: number;
+  items: Item[];
+  created_at: Date;
+  updated_at: Date;
+}
+
+const orderSchema = new Schema({
   username: {
     type: String,
     required: true,
   },
   status: {
-    type: String,
+    type: Enumerator,
     enum: ["pending", "processing", "shipped", "delivered"],
     default: "pending",
   },
@@ -31,16 +53,11 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      // product: {
-      //   type: mongoose.Schema.Types.ObjectId,
-      //   ref: "Product", // Reference to the Product model
-      //   required: true,
-      // },
       quantity: {
         type: Number,
         required: true,
         min: 1,
-      }
+      },
     },
   ],
   created_at: {
@@ -53,6 +70,4 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const Order = mongoose.model("Order", orderSchema);
-
-module.exports = Order;
+export const Order = model<IOrder>("Order", orderSchema);

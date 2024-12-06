@@ -1,15 +1,16 @@
-require('dotenv')
-const JWT = require("jsonwebtoken");
+import dotenv from "dotenv";
+dotenv.config();
+import JWT from 'jsonwebtoken'
 
 const { sign, verify } = JWT;
 
 const secretKey = process.env.JWT_SECRET;
 
-function generateToken(payload) {
+export function generateToken(payload: any) {
   return sign(payload, secretKey, { expiresIn: "1h" });
 }
 
-function verifyToken(token) {
+export function verifyToken(token: string) {
   try {
     return verify(token, secretKey);
   } catch (error) {
@@ -17,4 +18,3 @@ function verifyToken(token) {
   }
 }
 
-module.exports = { generateToken, verifyToken };

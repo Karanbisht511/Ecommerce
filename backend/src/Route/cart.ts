@@ -1,14 +1,12 @@
-const express = require("express");
-const cart = require("../Controller/cart");
-const { isAuthenticated } = require("../Controller/JWTAuthMiddleware");
+import express from "express";
+import { addToCart, update, remove, getCart } from '../Controller/cart' ;
+import { isAuthenticated } from "../Controller/JWTAuthMiddleware";
 
 const router = express.Router();
-
-const { addToCart, update, remove, getCart } = cart;
 
 router.get("/getCart", isAuthenticated, getCart);
 router.post("/addToCart", isAuthenticated, addToCart);
 router.post("/delete", isAuthenticated, remove);
 router.post("/update", isAuthenticated, update);
 
-module.exports = router;
+export = router;

@@ -1,7 +1,21 @@
-const mongoose = require("mongoose");
-const Category = require("./category");
+import { Schema, model, Document } from "mongoose";
 
-const productSchema = new mongoose.Schema({
+export interface iProduct extends Document {
+  name: String;
+  description: String;
+  price: Number;
+  stockQuantity: Number;
+  category: String;
+  review: {
+    rating: Number;
+    reviewerCount: Number;
+  };
+  images: [String];
+  created_at: Date;
+  updated_at: Date;
+}
+
+const productSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -23,7 +37,7 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    required: true,
   },
   review: {
     rating: { type: Number },
@@ -40,6 +54,4 @@ const productSchema = new mongoose.Schema({
   },
 });
 
-const Product = mongoose.model("Product", productSchema);
-
-module.exports = Product;
+export const Product = model<iProduct>("Product", productSchema);

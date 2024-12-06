@@ -1,16 +1,17 @@
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 const { generateToken } = require("../Utils/JWTFunctions");
-const User = require("../Model/user");
-const { areValidCredentials } = require("../Utils/validateCredentials");
+import { User } from "../Model/user";
+import { areValidCredentials } from "../Utils/validateCredentials";
 
-exports.login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
-   
+
     const result = await User.findOne({ username });
 
     if (!result) {
-      res.status(400).json({ message: "Invalid User Credentials!" });
+       res.status(400).json({ message: "Invalid User Credentials!" });
     } else if (result) {
       console.log(result);
       const { _id } = result;
@@ -22,7 +23,7 @@ exports.login = async (req, res) => {
         }
         if (isEqual) {
           const token = generateToken(userPayload);
-          delete result["passwordHash"];
+          // delete result["passwordHash"];
           res.status(200).json({
             success: true,
             isUserAuthenticated: true,
@@ -52,7 +53,7 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.signup = async (req, res) => {
+export const signup = async (req: Request, res: Response) => {
   try {
     console.log(req.body);
     const { username, password, email, mobile } = req.body;
@@ -72,16 +73,16 @@ exports.signup = async (req, res) => {
         res.status(200).send("Signup Successfull");
       });
     }
-  } catch (error) {
+  } catch (error:any) {
     console.log(error.message);
     res.status(400).send("Some issue occured" + error.message);
   }
 };
 
-exports.logout = async (req, res) => {
+export const logout = async (req: Request, res: Response) => {
   try {
     res.status(200).json({ message: "logout successfully" });
-  } catch (error) {
+  } catch (error:any) {
     res.status(400).json({ message: `${error.message}` });
   }
 };

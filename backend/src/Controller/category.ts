@@ -1,6 +1,7 @@
-const Category = require("../Model/category");
+import { Request, Response } from "express";
+import { Category } from "../Model/category";
 
-const getAllCategories = async (req, res) => {
+export const getAllCategories = async (req: Request, res: Response) => {
   try {
     const categories = await Category.find({});
     console.log(categories);
@@ -8,13 +9,13 @@ const getAllCategories = async (req, res) => {
       res.send(400).json({ message: "No Categories found" });
     }
     res.status(200).json(categories);
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
-const getCategoryDetail = async (req, res) => {
+export const getCategoryDetail = async (req: Request, res: Response) => {
   try {
     const { name } = req.params;
     const catDetails = await Category.findOne({ name });
@@ -22,13 +23,13 @@ const getCategoryDetail = async (req, res) => {
       res.send(400).json({ message: "Not found" });
     }
     res.status(200).json(catDetails);
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
-const add = async (req, res) => {
+export const add = async (req: Request, res: Response) => {
   try {
     const { categoryDetail } = req.body;
     const { name, description } = categoryDetail;
@@ -42,18 +43,16 @@ const add = async (req, res) => {
     newCategory.save();
     res.status(200).send("category saved");
     // }
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
-const remove = () => {
+export const remove = (req: Request, res: Response) => {
   res.send(200).json({ message: "Remove category api is not implemented yet" });
 };
 
-const update = () => {
+export const update = (req: Request, res: Response) => {
   res.send(200).json({ message: "Update Category api is not implemented yet" });
 };
-
-module.exports = { getAllCategories, getCategoryDetail, add, remove, update };

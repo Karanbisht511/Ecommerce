@@ -1,7 +1,8 @@
-const Product = require("../Model/product");
-const Category = require("../Model/category");
+import { Product } from "../Model/product";
+import { Category } from "../Model/category";
+import { Request, Response } from "express";
 
-const getAllProducts = async (req, res) => {
+export const getAllProducts = async (req: Request, res: Response) => {
   try {
     console.log(req?.body?.filter);
     const { category, rating } = req?.body?.filter;
@@ -24,13 +25,13 @@ const getAllProducts = async (req, res) => {
       return;
     }
     res.status(200).json({ products });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
-const getCategorizedData = async (req, res) => {
+export const getCategorizedData = async (req: Request, res: Response) => {
   try {
     const products = await Product.find({});
     const categories = await Category.find({});
@@ -40,31 +41,31 @@ const getCategorizedData = async (req, res) => {
     }
     console.log(products);
     console.log(categories);
-    let catProductsList = [];
+    let catProductsList: Array<any> = [];
     categories.map((category) => {
       const { name } = category;
       console.log(name);
-      const productsList = products.filter(({ category,review }) =>{ 
-        const {rating}=review
+      const productsList = products.filter(({ category, review }) => {
+        const { rating } = review;
         console.log(rating);
-        return (category === name)
+        return category === name;
         //  return (category === name && rating > 4.0)
-      } )
-      
+      });
+
       console.log(productsList);
       catProductsList.push(productsList);
     });
 
     res.status(200).json({ catProductsList });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
-const getProduct = (req, res) => {};
+export const getProduct = (req: Request, res: Response) => {};
 
-const add = async (req, res) => {
+export const add = async (req: Request, res: Response) => {
   try {
     const { product } = req?.body;
 
@@ -90,29 +91,29 @@ const add = async (req, res) => {
     });
     newProduct.save();
     res.status(200).json({ message: "New Product added" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
-const remove = (req, res) => {
+export const remove = (req: Request, res: Response) => {
   const { body } = req;
   res.send(body);
 };
 
-const update = (req, res) => {
+export const update = (req: Request, res: Response) => {
   const { body } = req;
   res.send(body);
 };
 
-const migrationAPI = async (req, res) => {
+export const migrationAPI = async (req: Request, res: Response) => {
   try {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then(async (json) => {
-        let savedCat = [];
-        let savedProducts = [];
+        let savedCat: Array<any> = [];
+        let savedProducts: Array<any> = [];
         const existingCategories = await Category.find({});
         const existingProducts = await Product.find({});
 
@@ -124,7 +125,7 @@ const migrationAPI = async (req, res) => {
           savedCat.push(cat?.name);
         });
 
-        json.map(async (data) => {
+        json.map(async (data: any) => {
           const { title, price, description, category, image, rating } = data;
           const isCatExist = savedCat.find((element) => element === category);
           console.log(savedCat);
@@ -143,7 +144,7 @@ const migrationAPI = async (req, res) => {
           console.log(isProductExist);
           if (isProductExist === undefined) {
             const newProduct = new Product({
-              name:  title ,
+              name: title,
               description: description,
               price: price,
               stockQuantity: Math.floor(Math.random() * 100),
@@ -160,18 +161,8 @@ const migrationAPI = async (req, res) => {
 
         res.status(200).json({ message: "Migration Successfull" });
       });
-  } catch (error) {
+  } catch (error: any) {
     console.log("ERRPR");
     console.log(error.message);
   }
-};
-
-module.exports = {
-  getAllProducts,
-  getCategorizedData,
-  getProduct,
-  add,
-  remove,
-  update,
-  migrationAPI,
 };

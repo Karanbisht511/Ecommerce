@@ -1,6 +1,6 @@
-const express = require("express");
-const { isAuthenticated } = require("../Controller/JWTAuthMiddleware");
-const { buyProducts } = require("../Controller/orders");
+import express from "express";
+import { isAuthenticated } from "../Controller/JWTAuthMiddleware";
+import { buyProducts } from "../Controller/orders"
 const router = express.Router();
 
 router.post("/buyProducts", isAuthenticated, buyProducts);
@@ -9,4 +9,4 @@ router.post("/buyProducts", isAuthenticated, buyProducts);
 // router.post('/cancelOrder:id',isAuthenticated)
 // router.update('/updateOrder',isAuthenticated)
 
-module.exports = router;
+export = router;

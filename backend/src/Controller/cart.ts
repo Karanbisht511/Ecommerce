@@ -1,8 +1,9 @@
-const Cart = require("../Model/cart");
+import { Request, Response } from "express";
+import { Cart } from "../Model/cart";
 
-const getCart = async (req, res) => {
+export const getCart = async (req: Request, res: Response) => {
   try {
-    const { tokenDecoded } = req;
+    const { tokenDecoded } = req.body;
 
     const cartItems = await Cart.find({ user: tokenDecoded?.userId });
     if (cartItems !== null) {
@@ -10,42 +11,33 @@ const getCart = async (req, res) => {
     } else {
       res.json({ message: "Cart is Empty" });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
   }
 };
 
-const addToCart =async (req, res) => {
+export const addToCart = async (req: Request, res: Response) => {
   try {
-    const { products } = req.body;
-    const { tokenDecoded } = req;
+    const { products,tokenDecoded } = req.body;
 
-    // const cartItems = new Cart({
-    //   user: tokenDecoded?.userId,
-    //   items: products,
-    // });
-
-    // cartItems.save();
-// const update=products
     const cartItems = await Cart.findOneAndUpdate(
       { user: tokenDecoded?.userId },
       products
     );
-console.log(cartItems);
+    console.log(cartItems);
     res.json({
       message: "Products are added to cart",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
   }
 };
 
-const remove = (req, res) => {};
+export const remove = (req: Request, res: Response) => {};
 
-const update = async (req, res) => {
+export const update = async (req: Request, res: Response) => {
   try {
-    const { products } = req.body;
-    const { tokenDecoded } = req;
+    const { products,tokenDecoded } = req.body;
 
     const update = products;
 
@@ -60,9 +52,7 @@ const update = async (req, res) => {
       message: "cart is updated",
       data: cartItems,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
   }
 };
-
-module.exports = { getCart, addToCart, remove, update };
